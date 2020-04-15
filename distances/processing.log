@@ -1,0 +1,30 @@
+28/12/2019 01:27:41 AM main.py      INFO     Image processing started
+28/12/2019 01:27:41 AM main.py      INFO     Switching to dir /home/bortoletti/projects/FacePointsExtractor 
+28/12/2019 01:27:41 AM main.py      INFO     processing MIT-10.jpg... 
+28/12/2019 01:27:41 AM faceNormalizer.py DEBUG    Loading cascade classifier: haarcascade_frontalface_alt2.xml
+28/12/2019 01:27:41 AM faceNormalizer.py DEBUG    Trying to find a face:
+28/12/2019 01:27:41 AM faceNormalizer.py INFO     Found 1 faces!
+28/12/2019 01:27:41 AM faceNormalizer.py INFO     Cropping detected face:
+28/12/2019 01:27:41 AM faceNormalizer.py INFO     Detect eyes pair:
+28/12/2019 01:27:41 AM faceNormalizer.py DEBUG    Trying to find eyes pair:
+28/12/2019 01:27:41 AM faceNormalizer.py INFO     Found 2 eyes pair!
+28/12/2019 01:27:41 AM faceNormalizer.py DEBUG    Detecting eyes borders
+28/12/2019 01:27:41 AM faceNormalizer.py DEBUG    Normalizing geometrically:
+28/12/2019 01:27:41 AM faceNormalizer.py DEBUG    Alpha angle to rotate image: 1.570796
+28/12/2019 01:27:41 AM faceNormalizer.py INFO     Rotating and saving output image:
+28/12/2019 01:27:41 AM faceNormalizer.py INFO     Cropping and saving final normalized image
+28/12/2019 01:27:41 AM detectReferenceStripe.py DEBUG    Applying Gaussian Blur
+28/12/2019 01:27:41 AM detectReferenceStripe.py DEBUG    Detecting edges with Canny
+28/12/2019 01:27:41 AM detectReferenceStripe.py DEBUG    Performing dilation and erosion...
+28/12/2019 01:27:41 AM detectReferenceStripe.py DEBUG    Finding countours
+28/12/2019 01:27:41 AM detectReferenceStripe.py DEBUG    Sorting countours: top-to-bottom
+28/12/2019 01:27:41 AM detectReferenceStripe.py DEBUG    c area: 12784.0
+28/12/2019 01:27:41 AM detectReferenceStripe.py DEBUG    Calculating coordinates
+28/12/2019 01:27:41 AM detectReferenceStripe.py DEBUG    Computing euclidean distance between points in the reference stripe...
+28/12/2019 01:27:41 AM detectReferenceStripe.py INFO     Reference stripe width in pixels (587.00) and centimeters (50.00)
+28/12/2019 01:27:41 AM detectReferenceStripe.py INFO     Pixels per metric: (11.74)
+28/12/2019 01:27:41 AM detectReferenceStripe.py INFO     Return dict: {'w-pixels': 587.0, 'w-centimeters': 50.0, 'h-pixels': 255.0, 'h-centimeters': 5.5, 'pixelsPerMetric': 11.74, 'coordinates': [array([788.,  51.], dtype=float32), array([1375.,   51.], dtype=float32), array([1375.,  306.], dtype=float32), array([788., 306.], dtype=float32)]}
+28/12/2019 01:27:41 AM main.py      INFO     Calling external programming for feature extraction
+28/12/2019 01:27:51 AM main.py      INFO     Calculating distances px: ALL
+28/12/2019 01:27:51 AM calculateDistancesPx.py INFO     2278 distances_eu calculated
+28/12/2019 01:27:51 AM calculateDistancesPx.py INFO     2278 distances_mh calculated
