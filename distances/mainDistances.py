@@ -51,9 +51,9 @@ def face_distances(image_path):
     head, tail = os.path.split(image_path)
     if points_dict is not None:
         for i in range(0, 68):
-            x = int(points_dict['x_' + str(i)])
-            y = int(points_dict['y_' + str(i)])
-            cv2.circle(img_aux, (x, y), 5, (0, 255, 0), -1)
+                x = int(points_dict['x_' + str(i)])
+                y = int(points_dict['y_' + str(i)])
+                cv2.circle(img_aux, (x, y), 5, (0, 255, 0), -1)
         cv2.imwrite("./output/" + tail, img_aux)
         log.info("Calculating distances px: ALL")
         distances_all_eu_px, distances_all_mh_px = calculateDistancesPx.all(points_dict, reference_info)

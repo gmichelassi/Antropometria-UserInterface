@@ -250,29 +250,31 @@ def all(points, reference):
     dist_calculated = {}
 
     for i in range(0, 68):
-        x1 = "x_" + str(i)
-        y1 = "y_" + str(i)
-        for k in range(0, 68):
-            key = ""
-            aux_key_ik = "p" + str(i) + "_q" + str(k)
-            aux_key_ki = "p" + str(k) + "_q" + str(i)
+        if i not in [61, 63, 66]:
+            x1 = "x_" + str(i)
+            y1 = "y_" + str(i)
+            for k in range(0, 68):
+                if k not in [61, 63, 66]:
+                    key = ""
+                    aux_key_ik = "p" + str(i) + "_q" + str(k)
+                    aux_key_ki = "p" + str(k) + "_q" + str(i)
 
-            if i == k:
-                continue
+                    if i == k:
+                        continue
 
-            if dist_calculated.get(aux_key_ik, 0) == 0 and dist_calculated.get(aux_key_ki, 0) == 0:
-                dist_calculated[aux_key_ik] = 1
-                key = "p" + str(i) + "_q" + str(k)
+                    if dist_calculated.get(aux_key_ik, 0) == 0 and dist_calculated.get(aux_key_ki, 0) == 0:
+                        dist_calculated[aux_key_ik] = 1
+                        key = "p" + str(i) + "_q" + str(k)
 
-            if key == "" or key != "" and key in distances_eu:
-                continue
+                    if key == "" or key != "" and key in distances_eu:
+                        continue
 
-            x2 = "x_" + str(k)
-            y2 = "y_" + str(k)
-            distances_eu[key] = (dist.euclidean((points[x1], points[y1]), (points[x2], points[y2]))) / reference[
-                "w-pixels"]
-            distances_mh[key] = (dist.cityblock((points[x1], points[y1]), (points[x2], points[y2]))) / reference[
-                "w-pixels"]
+                    x2 = "x_" + str(k)
+                    y2 = "y_" + str(k)
+                    distances_eu[key] = (dist.euclidean((points[x1], points[y1]), (points[x2], points[y2]))) / reference[
+                        "w-pixels"]
+                    distances_mh[key] = (dist.cityblock((points[x1], points[y1]), (points[x2], points[y2]))) / reference[
+                        "w-pixels"]
 
     log.info("{0} distances_eu calculated".format(len(distances_eu)))
     log.info("{0} distances_mh calculated".format(len(distances_mh)))
