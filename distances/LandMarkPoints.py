@@ -13,10 +13,10 @@ class LandMarkPoints:
         faceRects = hogFaceDetector(img, 0)
         points = None
         for faceRect in faceRects:
-            x1 = faceRect.rect.left()
-            y1 = faceRect.rect.top()
-            x2 = faceRect.rect.right()
-            y2 = faceRect.rect.bottom()
+            x1 = faceRect.left()
+            y1 = faceRect.top()
+            x2 = faceRect.right()
+            y2 = faceRect.bottom()
             w = x2 - x1
             h = y2 - y1
             face = x1, y1, w, h
