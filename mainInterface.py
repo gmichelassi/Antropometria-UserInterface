@@ -80,6 +80,13 @@ def predizer(root, lbl_imagem, lbl_status, txt_resultado, btn_relatorio):
                 # O único problema aqui é o caminho que tem que ser alterado manualmente
 
             log.info("Loading ML model")
+
+            if os.path.isfile('./models/red_dim.sav'):
+                log.info("Loading Dimensionality Reduction")
+                pca = pickle.load(open("./models/red_dim.sav", 'rb'))
+                log.info("Applying Dimensionality Reduction")
+                target = pca.transform(target)
+
             model = pickle.load(open("./models/rf.sav", 'rb'))
             # model = joblib.load('./models/rf.joblib')
 
@@ -87,7 +94,7 @@ def predizer(root, lbl_imagem, lbl_status, txt_resultado, btn_relatorio):
 
             log.info("Predicting...")
 
-                # Fazemos a predição
+            # Fazemos a predição
             result = model.predict(target)
             if result[0] == 1:
                 result_string = "TEA"

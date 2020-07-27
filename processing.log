@@ -1,40 +1,4 @@
-15/04/2020 12:06:20 PM mainInterface.py INFO     Loading interface
-15/04/2020 12:06:21 PM mainInterface.py INFO     Interface loaded without errors!
-15/04/2020 12:06:39 PM mainInterface.py INFO     Finding image
-15/04/2020 12:06:47 PM mainInterface.py INFO     Image found, processing...
-15/04/2020 12:06:47 PM mainInterface.py INFO     Finding distances and predicting for test1.jpg
-15/04/2020 12:06:47 PM mainDistances.py INFO     Image processing started
-15/04/2020 12:06:47 PM mainDistances.py INFO     Switching to dir /home/gabriel/PycharmProjects/antropometria36_ui 
-15/04/2020 12:06:47 PM mainDistances.py INFO     processing /home/gabriel/Área de Trabalho/test1.jpg... 
-15/04/2020 12:06:47 PM faceNormalizer.py DEBUG    Loading cascade classifier: haarcascade_frontalface_alt2.xml
-15/04/2020 12:06:47 PM faceNormalizer.py DEBUG    Trying to find a face:
-15/04/2020 12:06:47 PM faceNormalizer.py INFO     Found 1 faces!
-15/04/2020 12:06:47 PM faceNormalizer.py INFO     Cropping detected face:
-15/04/2020 12:06:47 PM faceNormalizer.py INFO     Detect eyes pair:
-15/04/2020 12:06:48 PM faceNormalizer.py DEBUG    Trying to find eyes pair:
-15/04/2020 12:06:48 PM faceNormalizer.py INFO     Found 2 eyes pair!
-15/04/2020 12:06:48 PM faceNormalizer.py DEBUG    Detecting eyes borders
-15/04/2020 12:06:48 PM faceNormalizer.py DEBUG    Normalizing geometrically:
-15/04/2020 12:06:48 PM faceNormalizer.py DEBUG    Alpha angle to rotate image: 1.570796
-15/04/2020 12:06:48 PM faceNormalizer.py INFO     Rotating and saving output image:
-15/04/2020 12:06:48 PM faceNormalizer.py INFO     Cropping and saving final normalized image
-15/04/2020 12:06:48 PM detectReferenceStripe.py DEBUG    Applying Gaussian Blur
-15/04/2020 12:06:48 PM detectReferenceStripe.py DEBUG    Detecting edges with Canny
-15/04/2020 12:06:48 PM detectReferenceStripe.py DEBUG    Performing dilation and erosion...
-15/04/2020 12:06:48 PM detectReferenceStripe.py DEBUG    Finding countours
-15/04/2020 12:06:48 PM detectReferenceStripe.py DEBUG    Sorting countours: top-to-bottom
-15/04/2020 12:06:48 PM detectReferenceStripe.py DEBUG    c area: 12784.0
-15/04/2020 12:06:48 PM detectReferenceStripe.py DEBUG    Calculating coordinates
-15/04/2020 12:06:48 PM detectReferenceStripe.py DEBUG    Computing euclidean distance between points in the reference stripe...
-15/04/2020 12:06:48 PM detectReferenceStripe.py INFO     Reference stripe width in pixels (587.00) and centimeters (50.00)
-15/04/2020 12:06:48 PM detectReferenceStripe.py INFO     Pixels per metric: (11.74)
-15/04/2020 12:06:48 PM detectReferenceStripe.py INFO     Return dict: {'w-pixels': 587.0, 'w-centimeters': 50.0, 'h-pixels': 255.0, 'h-centimeters': 5.5, 'pixelsPerMetric': 11.74, 'coordinates': [array([788.,  51.], dtype=float32), array([1375.,   51.], dtype=float32), array([1375.,  306.], dtype=float32), array([788., 306.], dtype=float32)]}
-15/04/2020 12:06:48 PM mainDistances.py INFO     Calling external programming for feature extraction
-15/04/2020 12:07:27 PM mainDistances.py INFO     Calculating distances px: ALL
-15/04/2020 12:07:27 PM calculateDistancesPx.py INFO     2278 distances_eu calculated
-15/04/2020 12:07:27 PM calculateDistancesPx.py INFO     2278 distances_mh calculated
-15/04/2020 12:07:27 PM mainInterface.py INFO     All distances found
-15/04/2020 12:07:27 PM mainInterface.py INFO     Loading ML model
-15/04/2020 12:07:47 PM mainInterface.py INFO     Model loaded successfully
-15/04/2020 12:07:47 PM mainInterface.py INFO     Predicting...
-15/04/2020 12:07:47 PM mainInterface.py INFO     Result for test1.jpg: 1
+26/07/2020 03:43:31 PM mainInterface.py INFO     Loading interface
+26/07/2020 03:43:32 PM mainInterface.py INFO     Interface loaded without errors!
+26/07/2020 03:43:34 PM mainInterface.py INFO     Finding image
+26/07/2020 03:43:38 PM mainInterface.py INFO     Image found, processing...
