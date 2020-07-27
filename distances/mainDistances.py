@@ -43,10 +43,10 @@ def face_distances(image_path):
     log.info("Calling external programming for feature extraction")
     if cropped is None:
         img_aux = copy.deepcopy(img)
-        points_dict, dir_name = lm.dlib_cnn(img)
+        points_dict, dir_name = lm.dlib_hog(img)
     else:
         img_aux = copy.deepcopy(cropped)
-        points_dict, dir_name = lm.dlib_cnn(cropped)
+        points_dict, dir_name = lm.dlib_hog(cropped)
 
     head, tail = os.path.split(image_path)
     if points_dict is not None:

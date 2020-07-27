@@ -7,10 +7,10 @@ class LandMarkPoints:
     dlib_land_marks_extractor = "./distances/shape_predictor_68_face_landmarks.dat"
     dlib_cnn_file = "./distances/mmod_human_face_detector.dat"
 
-    def dlib_cnn(self, img):
+    def dlib_hog(self, img):
         gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-        dnnFaceDetector = dlib.cnn_face_detection_model_v1(self.dlib_cnn_file)
-        faceRects = dnnFaceDetector(img, 0)
+        hogFaceDetector = dlib.get_frontal_face_detector()
+        faceRects = hogFaceDetector(img, 0)
         points = None
         for faceRect in faceRects:
             x1 = faceRect.rect.left()
