@@ -39,11 +39,12 @@ def predizer(root, lbl_imagem, lbl_status, txt_resultado, btn_relatorio):
         filetypes = [("all files", "*.*")]
         img_path = dlg.askopenfilename(initialdir=os.path.expanduser("~"),
                                        title="Selecionar imagem", filetypes=filetypes)
-    except:
+    except IOError as ioe:
         img_path = ""
         lbl_status.configure(text="Ocorreu um erro, tente novamente.")
         root.update_idletasks()
         log.info("Não foi possível encontrar a imagem selecionada.")
+        log.info(f"Erro: {ioe}")
 
     if img_path is not "":
         log.info("Image found, processing...")
@@ -70,57 +71,62 @@ def predizer(root, lbl_imagem, lbl_status, txt_resultado, btn_relatorio):
 
         log.info("Finding distances and predicting for " + tail)
 
-        try:
-            # Neste trecho de código utilizamos o algoritmo do Henrique para gerar as distâncias
-            target = pd.DataFrame.from_dict(dist.face_distances(img_path), orient='index').T
-            target = target.to_numpy()
-            log.info("All distances found")
+        # try:
+        # Neste trecho de código utilizamos o algoritmo do Henrique para gerar as distâncias
+        target = pd.DataFrame.from_dict(dist.face_distances(img_path), orient='index').T
+        if os.path.isfile("./models/features_to_delete.csv"):
+            features_to_delete = pd.read_csv('./models/features_to_delete.csv')
+            features_to_delete = features_to_delete.values.tolist()[0]
+            target = target.drop(features_to_delete, axis=1)
 
-                # Carregamos o modelo de Machine Learn que foi determinado como o melhor
-                # O único problema aqui é o caminho que tem que ser alterado manualmente
+        target = target.to_numpy()
+        log.info("All distances found")
 
-            log.info("Loading ML model")
+        # Carregamos o modelo de Machine Learn que foi determinado como o melhor
+        # O único problema aqui é o caminho que tem que ser alterado manualmente
 
-            if os.path.isfile('./models/red_dim.sav'):
-                log.info("Loading Dimensionality Reduction")
-                pca = pickle.load(open("./models/red_dim.sav", 'rb'))
-                log.info("Applying Dimensionality Reduction")
-                target = pca.transform(target)
+        log.info("Loading ML model")
 
-            model = pickle.load(open("./models/rf.sav", 'rb'))
-            # model = joblib.load('./models/rf.joblib')
+        if os.path.isfile('./models/red_dim.sav'):
+            log.info("Loading Dimensionality Reduction")
+            red_dim = pickle.load(open("./models/red_dim.sav", 'rb'))
+            log.info("Applying Dimensionality Reduction")
+            target = red_dim.transform(target)
 
-            log.info("Model loaded successfully")
+        model = pickle.load(open("./models/model.sav", 'rb'))
+        # model = joblib.load('./models/rf.joblib')
 
-            log.info("Predicting...")
+        log.info("Model loaded successfully")
 
-            # Fazemos a predição
-            result = model.predict(target)
-            if result[0] == 1:
-                result_string = "TEA"
-            elif result[0] == 0:
-                result_string = "Desenvolvimento típico"
-            else:
-                result_string = "ERROR"
+        log.info("Predicting...")
 
-                # Agora vamos atualizar a caixa de texto com o resultado
-                # Também liberamos o botão de relatório
-            txt_resultado.configure(state='normal')
+        # Fazemos a predição
+        result = model.predict(target)
+        if result[0] == 1:
+            result_string = "TEA"
+        elif result[0] == 0:
+            result_string = "Desenvolvimento típico"
+        else:
+            result_string = "ERROR"
 
-            txt_resultado.insert('end', 'Imagem: ' + tail+'\n')
-            txt_resultado.insert('end', '\n')
-            txt_resultado.insert('end', 'Diagnóstico: ' + result_string+'\n')
-            lbl_status.configure(text="Operação finalizada!")
+            # Agora vamos atualizar a caixa de texto com o resultado
+            # Também liberamos o botão de relatório
+        txt_resultado.configure(state='normal')
 
-            txt_resultado.configure(state='disabled')
+        txt_resultado.insert('end', 'Imagem: ' + tail+'\n')
+        txt_resultado.insert('end', '\n')
+        txt_resultado.insert('end', 'Diagnóstico: ' + result_string+'\n')
+        lbl_status.configure(text="Operação finalizada!")
 
-            btn_relatorio.configure(state='active')
+        txt_resultado.configure(state='disabled')
 
-            log.info("Result for {0}: {1}".format(tail, str(result[0])))
-        except:
-            lbl_status.configure(text="Ocorreu um erro, tente novamente.")
-            log.info("Ocorreu um erro, tente novamente.")
-            root.update_idletasks()
+        btn_relatorio.configure(state='active')
+
+        log.info("Result for {0}: {1}".format(tail, str(result[0])))
+        # except:
+        #     lbl_status.configure(text="Ocorreu um erro, tente novamente.")
+        #     log.info("Ocorreu um erro, tente novamente.")
+        #     root.update_idletasks()
 
     else:
         messagebox.showerror(title="Erro", message="Nenhuma imagem foi selecionada!")
